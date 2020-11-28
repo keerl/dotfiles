@@ -1,30 +1,21 @@
 # Vars
 	HISTFILE=~/.zsh_history
-	SAVEHIST=1000 
+	SAVEHIST=2000 
 	setopt inc_append_history # To save every command before it is executed 
 	setopt share_history # setopt inc_append_history
 
 	git config --global push.default current
 
 # Aliases
-	alias v="vim -p"
-	mkdir -p /tmp/log
-    alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-    alias android='emulator @Pixel &'
-	# This is currently causing problems (fails when you run it anywhere that isn't a git project's root directory)
-	# alias vs="v `git status --porcelain | sed -ne 's/^ M //p'`"
+    # example: alias android='emulator @Pixel_3a_API_29 &'
 
 # Settings
-	export VISUAL=vim
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home
-    export ANDROID_HOME=/usr/local/share/android-sdk
-    export TSC_NONPOLLING_WATCHER="1"
-    export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-    export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-    export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-    export PATH=~/.npm-global/bin:$PATH
+    # example: export JAVA_HOME=/Library/...
 
 source ~/dotfiles/zsh/plugins/fixls.zsh
+
+# Custom settings (not to be commited)
+source ~/dotfiles/custom.sh
 
 #Functions
 	# Loop a command and show the output in vim
@@ -42,9 +33,6 @@ source ~/dotfiles/zsh/plugins/fixls.zsh
 
 # Custom cd
 chpwd() ls
-
-# For vim mappings: 
-	stty -ixon
 
 # Completions
 # These are all the plugin options available: https://github.com/robbyrussell/oh-my-zsh/tree/291e96dcd034750fbe7473482508c08833b168e3/plugins
@@ -66,7 +54,6 @@ compinit
 source ~/dotfiles/zsh/plugins/oh-my-zsh/lib/history.zsh
 source ~/dotfiles/zsh/plugins/oh-my-zsh/lib/key-bindings.zsh
 source ~/dotfiles/zsh/plugins/oh-my-zsh/lib/completion.zsh
-source ~/dotfiles/zsh/plugins/vi-mode.plugin.zsh
 source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh/keybindings.sh
@@ -85,5 +72,3 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 	zle -N down-line-or-beginning-search
 	bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
-
-export PATH=$PATH:$HOME/dotfiles/utils
