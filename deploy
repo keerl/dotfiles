@@ -52,7 +52,7 @@ check_default_shell() {
 
 echo "We're going to do the following:"
 echo "1. Grab dependencies"
-echo "2. Check to make sure you have zsh, vim, and tmux installed"
+echo "2. Check to make sure you have zsh and tmux installed"
 echo "3. We'll help you install them if you don't"
 echo "4. We're going to check to see if your default shell is zsh"
 echo "5. We'll try to change it if it's not" 
@@ -72,8 +72,6 @@ fi
 git submodule update --init --recursive
 check_for_software zsh
 echo 
-check_for_software vim
-echo
 check_for_software tmux
 echo
 
@@ -88,13 +86,11 @@ stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
 	mv ~/.zshrc ~/.zshrc.old
 	mv ~/.tmux.conf ~/.tmux.conf.old
-	mv ~/.vimrc ~/.vimrc.old
 else
 	echo -e "\nNot backing up old dotfiles."
 fi
 
 printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
-printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
 
 echo
